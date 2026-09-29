@@ -1,0 +1,165 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Times New Roman', serif;
+  color: #fff;
+  user-select: none;
+}
+
+#ui-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Let clicks pass through to canvas if needed, though we use keyboard */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Title Screen */
+#title-screen .content {
+  text-align: center;
+}
+
+#title-screen h1 {
+  font-size: 8rem;
+  letter-spacing: 0.2em;
+  margin: 0;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+#title-screen h2 {
+  font-size: 3rem;
+  font-style: italic;
+  font-weight: normal;
+  margin-top: 1rem;
+  color: #ffcc00;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+.blink {
+  margin-top: 4rem;
+  font-size: 2rem;
+  animation: blinker 2s linear infinite;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Chapter Select */
+.cards-container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.card {
+  width: 400px;
+  height: 600px;
+  border: 2px solid transparent;
+  background: rgba(10, 15, 30, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+  box-sizing: border-box;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.card h3 {
+  font-size: 3rem;
+  margin: 0 0 1rem 0;
+}
+
+.card p {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #aaa;
+}
+
+.card.focused {
+  border-color: #ffcc00;
+  transform: scale(1.05);
+  background: rgba(20, 30, 60, 0.9);
+}
+
+.card.focused p {
+  color: #fff;
+}
+
+/* In-Flight HUD */
+#hud-info {
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
+  transition: opacity 2s ease;
+}
+
+#hud-info h2 {
+  font-size: 4rem;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+#hud-info p {
+  font-size: 2rem;
+  margin: 0;
+  color: #ffcc00;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+}
+
+#hud-info.fade-out {
+  opacity: 0;
+}
+
+#pause-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+#pause-overlay h2 {
+  font-size: 6rem;
+  margin: 0 0 1rem 0;
+}
+
+#pause-overlay p {
+  font-size: 2rem;
+}
